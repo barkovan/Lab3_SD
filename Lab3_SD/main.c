@@ -14,7 +14,8 @@ void print_menu() {
     printf("3. Вставить элемент\n");
     printf("4. Найти элемент\n");
     printf("5. Удалить элемент\n");
-    printf("6. Вывести дерево (по возрастанию)\n");
+    printf("6. Вывести структуру дерева\n");
+    printf("7. Вывести дерево (по возрастанию)");
     printf("0. Выход\n");
     printf("========================================\n");
     printf("Ваш выбор: ");
@@ -112,11 +113,19 @@ int main() {
                 printf("[Ошибка] Сначала создайте дерево!\n");
                 break;
             }
-            printf("\n--- Содержимое дерева ---\n");
+            printf("\n--- Структура дерева ---\n");
             map_print_struct(current_map);
             printf("--------------------------\n");
             break;
-
+        case 7:
+            if (!current_map) {
+                printf("[Ошибка] Сначала создайте дерево!\n");
+                break;
+            }
+            printf("\n--- Содержимое дерева по возрастанию ---\n");
+            map_print(current_map);
+            printf("--------------------------\n");
+            break;
         case 0:
             if (current_map != NULL) {
                 map_destroy(current_map);

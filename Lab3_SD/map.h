@@ -36,7 +36,7 @@ BSTNode* bst_insert(BSTNode* node, long long val, char* str, int* status);
 BSTNode* bst_delete(BSTNode* root, long long val, int* status);
 BSTNode* bst_search(BSTNode* root, long long val);
 void bst_print(BSTNode* n);
-void bst_print_struct(BSTNode* n, int level);
+void bst_print_struct(BSTNode* n, char* prefix, bool is_left, bool is_root); 
 void free_bst_node(BSTNode* root);
 
 // B-дерево

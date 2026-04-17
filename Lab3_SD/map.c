@@ -74,7 +74,7 @@ void map_print_struct(Map* map) {
 
     if (map->type == BST_TYPE) {
         printf("\n--- Структура BST-дерева ---\n");
-        bst_print_struct((BSTNode*)map->root, 0);
+        bst_print_struct((BSTNode*)map->root, "", false, true);
     }
     else if (map->type == BTREE_TYPE) {
         printf("\n--- Структура B-дерева ---\n");
@@ -93,5 +93,5 @@ void map_destroy(Map* map) {
         free_btree_node((BTreeNode*)map->root);
     }
 
-    free(map); // Не забываем удалить саму обертку
+    free(map);
 }

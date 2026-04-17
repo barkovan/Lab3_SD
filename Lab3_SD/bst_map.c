@@ -104,18 +104,42 @@ void bst_print(BSTNode* n) {
 }
 
 /* Вывод структуры дерева */
-void bst_print_struct(BSTNode* n, int level) {
+void bst_print_struct(BSTNode* n, char* prefix, bool is_right, bool is_root) {
     if (n == NULL) return;
 
-    // Сначала идем в правое поддерево (оно будет сверху)
-    bst_print_struct(n->right, level + 1);
+    printf("%s", prefix);
 
-    // Печатаем текущий узел с отступом
-    for (int i = 0; i < level; i++) printf("    ");
-    printf("--[%lld]\n", n->key);
+    if (!is_root) {
+        printf(is_right ? "├── R: " : "└── L: ");
+    }
+    else {
+        printf("└── Root: ");
+    }
 
-    // Затем в левое (оно будет снизу)
-    bst_print_struct(n->left, level + 1);
+    printf("[%lld]\n", n->key);
+
+    // Подготовка префикса для дочерних элементов
+    char new_prefix[256];
+    sprintf(new_prefix, "%s%s", prefix, is_root ? "    " : (is_right ? "│   " : "    "));
+
+    // Проверяем наличие детей
+    if (n->left || n->right) {
+        // Сначала печатаем Правое поддерево (сверху)
+        if (n->right) {
+            bst_print_struct(n->right, new_prefix, true, false);
+        }
+        else {
+            printf("%s├── R: (null)\n", new_prefix);
+        }
+
+        // Затем печатаем Левое поддерево (снизу)
+        if (n->left) {
+            bst_print_struct(n->left, new_prefix, false, false);
+        }
+        else {
+            printf("%s└── L: (null)\n", new_prefix);
+        }
+    }
 }
 
 /* Освобождение всей памяти дерева */
