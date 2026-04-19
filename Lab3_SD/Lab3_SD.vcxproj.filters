@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="bst_map.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -25,6 +22,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="btree_map.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="rb_map.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tester.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -23,6 +23,9 @@ void map_insert(Map* map, long long key, char* value) {
     else if (map->type == BTREE_TYPE) {
         btree_insert(map, key, value);
     }
+    else if (map->type == RBTREE_TYPE) {
+        rb_insert(map, key, value);
+    }
 }
 
 // Поиск
@@ -35,6 +38,9 @@ char* map_find(Map* map, long long key) {
     }
     else if (map->type == BTREE_TYPE) {
         return btree_search((BTreeNode*)map->root, key);
+    }
+    else if (map->type == RBTREE_TYPE) {
+        return rb_search((RBNode*)map->root, key);
     }
 
     return NULL;
@@ -51,6 +57,9 @@ void map_delete(Map* map, long long key) {
     else if (map->type == BTREE_TYPE) {
         btree_delete(map, key);
     }
+    else if (map->type == RBTREE_TYPE) {
+        rb_delete(map, key);
+    }
 }
 
 // Вывод
@@ -62,6 +71,9 @@ void map_print(Map* map) {
     }
     else if (map->type == BTREE_TYPE) {
         btree_print((BTreeNode*)map->root);
+    }
+    else if (map->type == RBTREE_TYPE) {
+        rb_print((RBNode*)map->root);
     }
 }
 
@@ -80,6 +92,25 @@ void map_print_struct(Map* map) {
         printf("\n--- Структура B-дерева ---\n");
         btree_print_struct((BTreeNode*)map->root, 0, "", true);
     }
+    else if (map->type == RBTREE_TYPE) {
+        printf("\n--- Структура Красно-черного дерева ---\n");
+        rb_print_struct((RBNode*)map->root, "", false, true);
+    }
+}
+
+// Вычисление высоты текущего дерева
+int map_height(Map* map) {
+    if (map == NULL || map->root == NULL) return 0;
+    if (map->type == BST_TYPE) {
+        return bst_height((BSTNode*)map->root);
+    }
+    else if (map->type == BTREE_TYPE) {
+        return btree_height((BTreeNode*)map->root);
+    }
+    else if (map->type == RBTREE_TYPE) {
+        return rb_height((RBNode*)map->root);
+    }
+    return 0;
 }
 
 // Освобождение памяти (удаление мапы)
@@ -91,6 +122,9 @@ void map_destroy(Map* map) {
     }
     else if (map->type == BTREE_TYPE) {
         free_btree_node((BTreeNode*)map->root);
+    }
+    else if (map->type == RBTREE_TYPE) {
+        free_rb_node((RBNode*)map->root);
     }
 
     free(map);

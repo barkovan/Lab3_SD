@@ -24,6 +24,10 @@ void map_print(Map* map);
 void map_print_struct(Map* map);
 void map_destroy(Map* map);
 
+
+// для тестера
+int map_height(Map* map);
+
 // BST-дерево
 typedef struct Node {
     long long key;
@@ -54,3 +58,21 @@ char* btree_search(BTreeNode* x, long long key);
 void btree_print(BTreeNode* x);
 void btree_print_struct(BTreeNode* x, int level, char* prefix, bool is_last);
 void free_btree_node(BTreeNode* x);
+
+// Красно-черное дерево
+typedef struct RBNode {
+    long long key;
+    char* value;
+    int color;
+    struct RBNode* left;
+    struct RBNode* right;
+    struct RBNode* parent;
+} RBNode;
+
+void rb_insert(Map* map, long long key, const char* value);
+void rb_delete(Map* map, long long key);
+char* rb_search(RBNode* root, long long key);
+void rb_print(RBNode* root);
+void rb_print_struct(RBNode* root, char* prefix, bool is_right, bool is_root);
+void free_rb_node(RBNode* root);
+int rb_height(RBNode* root);

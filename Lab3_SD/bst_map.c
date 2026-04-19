@@ -142,6 +142,14 @@ void bst_print_struct(BSTNode* n, char* prefix, bool is_right, bool is_root) {
     }
 }
 
+/* Вычисление высоты BST-дерева*/
+int bst_height(BSTNode* node) {
+    if (node == NULL) return 0;
+    int left_h = bst_height(node->left);
+    int right_h = bst_height(node->right);
+    return 1 + (left_h > right_h ? left_h : right_h);
+}
+
 /* Освобождение всей памяти дерева */
 void free_bst_node(BSTNode* root) {
     if (root == NULL) return;

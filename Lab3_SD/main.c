@@ -11,11 +11,12 @@ void print_menu() {
     printf("========================================\n");
     printf("1. Создать/Переключиться на BST-дерево\n");
     printf("2. Создать/Переключиться на B-дерево\n");
-    printf("3. Вставить элемент\n");
-    printf("4. Найти элемент\n");
-    printf("5. Удалить элемент\n");
-    printf("6. Вывести структуру дерева\n");
-    printf("7. Вывести дерево (по возрастанию)");
+    printf("3. Создать/Переключиться на Красно-черное дерево\n");
+    printf("4. Вставить элемент\n");
+    printf("5. Найти элемент\n");
+    printf("6. Удалить элемент\n");
+    printf("7. Вывести структуру дерева\n");
+    printf("8. Вывести дерево (по возрастанию)\n");
     printf("0. Выход\n");
     printf("========================================\n");
     printf("Ваш выбор: ");
@@ -47,7 +48,7 @@ int main() {
                 printf("[Info] Память от предыдущего дерева освобождена.\n");
             }
             current_map = create_map(BST_TYPE, 0);
-            printf("[OK] AVL-дерево успешно создано и готово к работе!\n");
+            printf("[OK] BST-дерево успешно создано!\n");
             break;
 
         case 2:
@@ -66,8 +67,17 @@ int main() {
             break;
 
         case 3:
+            if (current_map != NULL) {
+                map_destroy(current_map);
+                printf("[Info] Память от предыдущего дерева освобождена.\n");
+            }
+            current_map = create_map(RBTREE_TYPE, 0);
+            printf("[OK] Красно-черное дерево успешно создано!\n");
+            break;
+
+        case 4:
             if (!current_map) {
-                printf("[Ошибка] Сначала создайте дерево (Пункт 1 или 2)!\n");
+                printf("[Ошибка] Сначала создайте дерево (Пункт 1, 2 или 3)!\n");
                 break;
             }
             printf("Введите ключ (целое число): ");
@@ -79,7 +89,7 @@ int main() {
             printf("[OK] Элемент [%lld: %s] успешно вставлен.\n", key, value);
             break;
 
-        case 4:
+        case 5:
             if (!current_map) {
                 printf("[Ошибка] Сначала создайте дерево!\n");
                 break;
@@ -96,7 +106,7 @@ int main() {
             }
             break;
 
-        case 5:
+        case 6:
             if (!current_map) {
                 printf("[Ошибка] Сначала создайте дерево!\n");
                 break;
@@ -108,7 +118,7 @@ int main() {
             printf("[OK] Операция удаления завершена (если ключ существовал).\n");
             break;
 
-        case 6:
+        case 7:
             if (!current_map) {
                 printf("[Ошибка] Сначала создайте дерево!\n");
                 break;
@@ -117,7 +127,8 @@ int main() {
             map_print_struct(current_map);
             printf("--------------------------\n");
             break;
-        case 7:
+
+        case 8:
             if (!current_map) {
                 printf("[Ошибка] Сначала создайте дерево!\n");
                 break;
@@ -126,6 +137,7 @@ int main() {
             map_print(current_map);
             printf("--------------------------\n");
             break;
+
         case 0:
             if (current_map != NULL) {
                 map_destroy(current_map);

@@ -102,6 +102,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -116,6 +117,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -124,9 +126,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="btree_map.c" />
-    <ClCompile Include="main.c" />
     <ClCompile Include="bst_map.c" />
+    <ClCompile Include="main.c" />
     <ClCompile Include="map.c" />
+    <ClCompile Include="rb_map.c" />
+    <ClCompile Include="tester.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="map.h" />

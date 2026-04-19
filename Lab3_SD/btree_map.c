@@ -452,6 +452,13 @@ void btree_print_struct(BTreeNode* x, int level, char* prefix, bool is_last) {
     }
 }
 
+// Вычисление высоты B-дерева (количество уровней)
+int btree_height(BTreeNode* node) {
+    if (node == NULL) return 0;
+    if (node->leaf) return 1;
+    return 1 + btree_height(node->children[0]);
+}
+
 // Полное освобождение памяти
 void free_btree_node(BTreeNode* x) {
     if (x == NULL) return;
