@@ -42,6 +42,7 @@ BSTNode* bst_search(BSTNode* root, long long val);
 void bst_print(BSTNode* n);
 void bst_print_struct(BSTNode* n, char* prefix, bool is_left, bool is_root); 
 void free_bst_node(BSTNode* root);
+int bst_height(BSTNode* node);
 
 // B-дерево
 typedef struct BTreeNode {
@@ -58,6 +59,7 @@ char* btree_search(BTreeNode* x, long long key);
 void btree_print(BTreeNode* x);
 void btree_print_struct(BTreeNode* x, int level, char* prefix, bool is_last);
 void free_btree_node(BTreeNode* x);
+int btree_height(BTreeNode* node);
 
 // Красно-черное дерево
 typedef struct RBNode {
