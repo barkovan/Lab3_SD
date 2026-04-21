@@ -7,7 +7,6 @@
 #include <windows.h>
 #include "map.h"
 
-/* Простой shuffle массива */
 static void shuffle(long long* arr, int n) {
     for (int i = n - 1; i > 0; i--) {
         int j = rand() % (i + 1);
@@ -91,7 +90,7 @@ int main() {
             continue;
         }
 
-        /* === 1. ВСТАВКА N элементов === */
+        /* 1. ВСТАВКА N элементов */
         clock_t start = clock();
         for (int j = 0; j < N; j++) {
             char value[64];
@@ -101,24 +100,24 @@ int main() {
         clock_t end = clock();
         double insert_ms = ((double)(end - start) / CLOCKS_PER_SEC) * 1000.0;
 
-        /* === 2. ПОИСК всех N ключей === */
+        /* 2. ВЫСОТА ПОСЛЕ ВСТАВКИ */
+        int height = map_height(map);
+
+        /* 3. ПОИСК всех N ключей */
         start = clock();
         for (int j = 0; j < N; j++) {
-            map_find(map, keys[j]);   /* ищем все вставленные ключи */
+            map_find(map, keys[j]);
         }
         end = clock();
         double search_ms = ((double)(end - start) / CLOCKS_PER_SEC) * 1000.0;
 
-        /* === 3. УДАЛЕНИЕ del_count элементов === */
+        /* 4. УДАЛЕНИЕ del_count элементов */
         start = clock();
         for (int j = 0; j < del_count; j++) {
             map_delete(map, del_keys[j]);
         }
         end = clock();
         double delete_ms = ((double)(end - start) / CLOCKS_PER_SEC) * 1000.0;
-
-        /* === 4. Высота дерева после операций === */
-        int height = map_height(map);
 
         /* Вывод строки таблицы */
         printf("%-12s | %-12.2f | %-12.2f | %-12.2f | %-8d\n",
@@ -132,7 +131,6 @@ int main() {
 
     printf("-----------------------------------------------------------------\n");
     printf("Тестирование завершено.\n");
-    printf("Результаты можно скопировать в отчёт.\n\n");
     printf("Нажмите Enter для выхода...");
     getchar(); getchar();
 
